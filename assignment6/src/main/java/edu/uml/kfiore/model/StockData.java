@@ -1,4 +1,4 @@
-package model;
+package edu.uml.kfiore.model;
 
 import java.text.SimpleDateFormat;
 
@@ -14,7 +14,7 @@ public abstract class StockData {
      */
     protected SimpleDateFormat simpleDateFormat;
 
-    public static final String dateFormat = "yyyy/MM/";
+    public static final String dateFormat = "yyyy/MM/dd hh:mm:ss";
 
     /**
      * Base constructor for StockData classes.

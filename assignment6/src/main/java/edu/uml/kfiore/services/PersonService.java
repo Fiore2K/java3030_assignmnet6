@@ -1,8 +1,8 @@
-package services;
+package edu.uml.kfiore.services;
 
 
-import model.Person;
-import model.Quotes;
+import edu.uml.kfiore.model.Person;
+import edu.uml.kfiore.model.Quotes;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public interface PersonService {
      * @return a list of quotes instances
      * @throws PersonServiceException
      */
-    List<Quotes> getQuotes(Person person) throws PersonServiceException;
+    List <Quotes> getQuotes(Person person) throws PersonServiceException;
 
     /**
      * Assign a quote to a person.
@@ -42,6 +42,6 @@ public interface PersonService {
      * @param person The person to assign the hobby too.
      * @throws PersonServiceException
      */
-    public void addQuotesToPerson(Quotes quotes, Person person) throws PersonServiceException;
+    void addQuotesToPerson(Quotes quotes, Person person) throws PersonServiceException;
 
 }

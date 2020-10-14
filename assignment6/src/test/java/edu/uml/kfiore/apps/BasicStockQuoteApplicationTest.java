@@ -1,10 +1,10 @@
-package apps;
+package edu.uml.kfiore.apps;
 
-import model.StockQuery;
-import model.StockQuote;
-import services.StockService;
-import services.StockServiceException;
-import util.Interval;
+import edu.uml.kfiore.model.StockQuery;
+import edu.uml.kfiore.model.StockQuote;
+import edu.uml.kfiore.services.StockService;
+import edu.uml.kfiore.services.StockServiceException;
+import edu.uml.kfiore.util.Interval;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,8 +43,8 @@ public class BasicStockQuoteApplicationTest {
     public void testDisplayResults() throws ParseException, StockServiceException {
         basicStockQuoteApplication = new BasicStockQuoteApplication(stockServiceMock);
         String symbol = "APPL";
-        String from = "2011/10/29";    //yyyy-MM-dd
-        String until = "2014/11/29";
+        String from = "2011/10/29 12:12:12";    //yyyy-MM-dd
+        String until = "2014/11/29 12:12:12";
         StockQuery stockQuery = new StockQuery(symbol, from, until);
 
         List<StockQuote> stockQuotes = new ArrayList<>();

@@ -1,4 +1,4 @@
-package model;
+package edu.uml.kfiore.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

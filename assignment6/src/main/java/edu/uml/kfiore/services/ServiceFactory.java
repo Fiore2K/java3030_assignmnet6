@@ -1,4 +1,4 @@
-package services;
+package edu.uml.kfiore.services;
 
 /**
  * A factory that returns a <CODE>StockService</CODE> instance.

@@ -1,4 +1,4 @@
-package util;
+package edu.uml.kfiore.util;
 
 /**
  * This class is used to signal a problem connecting to a database.

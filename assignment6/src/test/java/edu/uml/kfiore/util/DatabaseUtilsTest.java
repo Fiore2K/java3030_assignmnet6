@@ -1,4 +1,4 @@
-package util;
+package edu.uml.kfiore.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

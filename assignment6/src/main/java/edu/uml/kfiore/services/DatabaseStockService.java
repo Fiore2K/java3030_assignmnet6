@@ -1,11 +1,11 @@
-package services;
+package edu.uml.kfiore.services;
 
 
-import model.StockData;
-import model.StockQuote;
-import util.DatabaseConnectionException;
-import util.DatabaseUtils;
-import util.Interval;
+import edu.uml.kfiore.model.StockData;
+import edu.uml.kfiore.model.StockQuote;
+import edu.uml.kfiore.util.DatabaseConnectionException;
+import edu.uml.kfiore.util.DatabaseUtils;
+import edu.uml.kfiore.util.Interval;
 
 import java.math.BigDecimal;
 import java.sql.Connection;

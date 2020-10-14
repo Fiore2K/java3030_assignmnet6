@@ -1,8 +1,6 @@
-package model;
+package edu.uml.kfiore.model;
 
 import org.junit.Test;
-
-import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -45,10 +43,7 @@ public class Person_StocksTest {
         personStocks.setId(10);
         Quotes quotes = QuotesTest.createQuotes();
         Person person = new Person();
-        Timestamp birthDate = new Timestamp(PersonTest.birthDayCalendar.getTimeInMillis() + 10000);
-        person.setBirthDate(birthDate);
-        person.setFirstName(PersonTest.firstName);
-        person.setLastName(PersonTest.lastName);
+        person.setUserName(PersonTest.userName);
         Person_Stocks personStocks1 = new Person_Stocks(person, quotes);
         assertFalse("Different person", personStocks.equals(personStocks1));
     }
@@ -62,8 +57,7 @@ public class Person_StocksTest {
     @Test
     public void testToString() {
         Person_Stocks personStocks = createPerson_Stocks();
-        assertTrue("toString has lastName", personStocks.toString().contains(PersonTest.lastName));
-        assertTrue("toString has firstName", personStocks.toString().contains(PersonTest.firstName));
+        assertTrue("toString has firstName", personStocks.toString().contains(PersonTest.userName));
         assertTrue("toString has stockSymbol", personStocks.toString().contains(QuotesTest.stockSymbol));
         assertTrue("toString has time", personStocks.toString().contains((String.valueOf(QuotesTest.time))));
         assertTrue("toString has price", personStocks.toString().contains(Integer.toString(QuotesTest.price)));

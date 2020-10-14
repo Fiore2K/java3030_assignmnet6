@@ -1,4 +1,4 @@
-package services;
+package edu.uml.kfiore.services;
 
 /**
  * Used to signal a problem with the StockService.

@@ -1,10 +1,7 @@
-package model;
+package edu.uml.kfiore.model;
 
-
+import edu.uml.kfiore.util.DatabaseUtils;
 import org.junit.Test;
-
-import java.sql.Timestamp;
-import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,15 +10,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class PersonTest {
 
-    public  static final Calendar birthDayCalendar = Calendar.getInstance();
 
-    static {
-        birthDayCalendar.set(1993, Calendar.SEPTEMBER, 29);
-    }
-
-    public static final String firstName = "Kyle";
-    public  static final String lastName = "Fiore";
-    public static final Timestamp birthDate = new Timestamp(birthDayCalendar.getTimeInMillis());
+    public static final String userName = "sam";
 
     /**
      * Testing helper method for generating Person test data
@@ -30,9 +20,8 @@ public class PersonTest {
      */
     public static Person createPerson() {
         Person person = new Person();
-        person.setBirthDate(birthDate);
-        person.setFirstName(firstName);
-        person.setLastName(lastName);
+        person.setUserName(userName);
+        DatabaseUtils.saveOrUpdate(person);
         return person;
     }
 
@@ -41,9 +30,7 @@ public class PersonTest {
         Person person = createPerson();
         int id = 3;
         person.setId(id);
-        assertEquals("first name matches", firstName, person.getFirstName());
-        assertEquals("last name matches", lastName, person.getLastName());
-        assertEquals("birthday matches", birthDate, person.getBirthDate());
+        assertEquals("first name matches", userName, person.getUserName());
         assertEquals("id matches", id, person.getId());
 
     }

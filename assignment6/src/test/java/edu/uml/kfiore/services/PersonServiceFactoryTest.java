@@ -1,4 +1,4 @@
-package services;
+package edu.uml.kfiore.services;
 
 import org.junit.Test;
 

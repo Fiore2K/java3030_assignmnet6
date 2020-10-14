@@ -1,12 +1,12 @@
-package apps;
+package edu.uml.kfiore.apps;
 
-import model.StockQuery;
-import model.StockQuote;
 
-import services.StockService;
-import services.StockServiceException;
-import services.ServiceFactory;
-import util.Interval;
+import edu.uml.kfiore.model.StockQuery;
+import edu.uml.kfiore.model.StockQuote;
+import edu.uml.kfiore.services.ServiceFactory;
+import edu.uml.kfiore.services.StockService;
+import edu.uml.kfiore.services.StockServiceException;
+import edu.uml.kfiore.util.Interval;
 
 import java.text.ParseException;
 import java.util.List;

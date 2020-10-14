@@ -1,7 +1,8 @@
-package services;
+package edu.uml.kfiore.services;
 
-import model.StockQuote;
-import util.Interval;
+
+import edu.uml.kfiore.model.StockQuote;
+import edu.uml.kfiore.util.Interval;
 
 import java.util.Calendar;
 import java.util.List;

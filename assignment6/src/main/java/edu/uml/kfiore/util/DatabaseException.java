@@ -1,4 +1,4 @@
-package util;
+package edu.uml.kfiore.util;
 
 /**
  * A higher level exception that tells the client accessing the database failed. .

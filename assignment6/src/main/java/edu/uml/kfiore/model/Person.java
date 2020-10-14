@@ -1,11 +1,10 @@
-package model;
+package edu.uml.kfiore.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -16,9 +15,7 @@ import java.util.Objects;
 public class Person implements DatabaseAccessObject {
 
     private int id;
-    private String firstName;
-    private String lastName;
-    private Timestamp birthDate;
+    private String userName;
 
     /**
      * Primary Key - Unique ID for a particular row in the person table.
@@ -26,7 +23,7 @@ public class Person implements DatabaseAccessObject {
      * @return an integer value
      */
     @Id
-    @Column(name = "ID", nullable = false, insertable = true, updatable = true)
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
         return id;
     }
@@ -46,53 +43,17 @@ public class Person implements DatabaseAccessObject {
      * @return the person's first name
      */
     @Basic
-    @Column(name = "first_name", nullable = false, insertable = true, updatable = true, length = 256)
-    public String getFirstName() {
-        return firstName;
+    @Column(name = "user_name", nullable = false, insertable = true, updatable = true, length = 256)
+    public String getUserName() {
+        return userName;
     }
 
     /**
      * Specify the person's first name
      * @param firstName a String value
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     *
-     * @return the person's last name
-     */
-    @Basic
-    @Column(name = "last_name", nullable = false, insertable = true, updatable = true, length = 256)
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Specify the person's last name
-     * @param lastName a String value
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     *
-     * @return the person's birthdate.
-     */
-    @Basic
-    @Column(name = "birth_date", nullable = false, insertable = true, updatable = true)
-    public Timestamp getBirthDate() {
-        return birthDate;
-    }
-
-    /**
-     * Specify the person's date of birth.
-     * @param birthDate  the time the person was born.
-     */
-    public void setBirthDate(Timestamp birthDate) {
-        this.birthDate = birthDate;
+    public void setUserName(String firstName) {
+        this.userName = firstName;
     }
 
     @Override
@@ -103,11 +64,7 @@ public class Person implements DatabaseAccessObject {
         Person person = (Person) o;
 
         if (id != person.id) return false;
-        if (!Objects.equals(birthDate, person.birthDate))
-            return false;
-        if (!Objects.equals(firstName, person.firstName))
-            return false;
-        if (!Objects.equals(lastName, person.lastName))
+        if (!Objects.equals(userName, person.userName))
             return false;
 
         return true;
@@ -116,9 +73,7 @@ public class Person implements DatabaseAccessObject {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
         return result;
     }
 
@@ -126,10 +81,7 @@ public class Person implements DatabaseAccessObject {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+                ", firstName='" + userName;
     }
 }
 

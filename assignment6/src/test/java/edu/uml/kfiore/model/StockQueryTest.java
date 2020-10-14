@@ -1,4 +1,5 @@
-package model;
+package edu.uml.kfiore.model;
+
 
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class StockQueryTest {
     @Test
     public void testBasicConstruction() throws Exception{
         String symbol = "APPL";
-        StockQuery stockQuery = new StockQuery(symbol,"2011-10-29 12:12:1","2014-10-29 12:12:1");
+        StockQuery stockQuery = new StockQuery(symbol,"2011/12/12 12:12:01","2011/12/12 12:12:01");
         assertEquals("Verify construction", symbol, stockQuery.getSymbol());
     }
 

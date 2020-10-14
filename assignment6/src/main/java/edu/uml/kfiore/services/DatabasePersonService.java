@@ -1,10 +1,9 @@
-package services;
+package edu.uml.kfiore.services;
 
-import model.Person;
-import model.Quotes;
-import model.Person_Stocks;
-import util.DatabaseUtils;
-
+import edu.uml.kfiore.model.Person;
+import edu.uml.kfiore.model.Person_Stocks;
+import edu.uml.kfiore.model.Quotes;
+import edu.uml.kfiore.util.DatabaseUtils;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,6 +12,8 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static edu.uml.kfiore.util.DatabaseUtils.getSessionFactory;
 
 public class DatabasePersonService implements PersonService {
 
@@ -24,10 +25,10 @@ public class DatabasePersonService implements PersonService {
      */
 
     @Override
-    public List<Person> getPerson() throws PersonServiceException {
+    public List <Person> getPerson() throws PersonServiceException {
 
-        Session session = DatabaseUtils.getSessionFactory().openSession();
-        List<Person> returnValue;
+        Session session = getSessionFactory().openSession();
+        List <Person> returnValue;
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -50,6 +51,31 @@ public class DatabasePersonService implements PersonService {
 
     }
 
+    public static List<Person> getPeep(boolean handleTransaction) {
+        Session session = null;
+        List <Person> returnValue;
+        try
+
+        {
+            Transaction transaction = null;
+            session = getSessionFactory().openSession();
+            if (handleTransaction) {
+                transaction = session.beginTransaction();
+            }
+            Criteria criteria = session.createCriteria(Person.class);
+
+            returnValue = (List <Person>) criteria.list();
+            if (handleTransaction) {
+                transaction.commit();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return returnValue;
+    }
+
     /**
      * Adding a new person or updating an existing persons data/information
      * @param person a person object to either update or create
@@ -58,7 +84,7 @@ public class DatabasePersonService implements PersonService {
     @Override
     public void addOrUpdatePerson(Person person) {
 
-        Session session = DatabaseUtils.getSessionFactory().openSession();
+        Session session = getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -85,7 +111,7 @@ public class DatabasePersonService implements PersonService {
 
     @Override
     public List<Quotes> getQuotes(Person person) {
-        Session session = DatabaseUtils.getSessionFactory().openSession();
+        Session session = getSessionFactory().openSession();
         Transaction transaction = null;
         List<Quotes> quotes = new ArrayList<>();
         try {
@@ -120,7 +146,7 @@ public class DatabasePersonService implements PersonService {
     @Override
     public void addQuotesToPerson(Quotes quotes, Person person) {
 
-        Session session = DatabaseUtils.getSessionFactory().openSession();
+        Session session = getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();

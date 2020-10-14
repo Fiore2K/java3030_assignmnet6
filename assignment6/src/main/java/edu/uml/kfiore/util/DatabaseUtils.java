@@ -1,8 +1,8 @@
-package util;
+package edu.uml.kfiore.util;
 
 
 import com.ibatis.common.jdbc.ScriptRunner;
-import model.DatabaseAccessObject;
+import edu.uml.kfiore.model.DatabaseAccessObject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -238,12 +238,12 @@ public class DatabaseUtils {
      * if no value was found matching the criteria.
      */
     @SuppressWarnings("unchecked")  // API requires unchecked OK per guidelines
-    public static <T extends DatabaseAccessObject> List<T> findResultsBy(String property,
-                                                                         Object value,
-                                                                         Class T,
-                                                                         boolean handleTransaction) {
+    public static <T extends DatabaseAccessObject> List <T> findResultsBy(String property,
+                                                                          Object value,
+                                                                          Class T,
+                                                                          boolean handleTransaction) {
         Session session = null;
-        List<T> returnValue;
+        List <T> returnValue;
         try {
             Transaction transaction = null;
             session = getSessionFactory().openSession();
@@ -252,7 +252,7 @@ public class DatabaseUtils {
             }
             Criteria criteria = session.createCriteria(T);
             criteria = criteria.add(Restrictions.eq(property, value));
-            returnValue = (List<T>) criteria.list();
+            returnValue = (List <T>) criteria.list();
             if (handleTransaction) {
                 transaction.commit();
             }
@@ -264,5 +264,27 @@ public class DatabaseUtils {
         return returnValue;
     }
 
+    public static <T extends DatabaseAccessObject> void saveOrUpdate(T saveMe) {
+        Session session = getSessionFactory().openSession();
 
+        try {
+            session.beginTransaction();
+
+            session.save(saveMe);
+
+            session.getTransaction().commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            initializeDatabase(initializationFile);
+        } catch (DatabaseInitializationException e) {
+            throw new RuntimeException("DatabaseInitializationException", e);
+        }
+    }
 }

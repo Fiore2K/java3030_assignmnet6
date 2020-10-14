@@ -1,4 +1,4 @@
-package util;
+package edu.uml.kfiore.util;
 
 /**
  * An enumeration that represents a of unit of time

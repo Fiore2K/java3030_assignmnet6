@@ -1,5 +1,6 @@
-package model;
+package edu.uml.kfiore.model;
 
+import edu.uml.kfiore.model.StockQuote;
 import org.junit.Before;
 import org.junit.Test;
 

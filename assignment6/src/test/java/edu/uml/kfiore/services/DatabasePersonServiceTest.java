@@ -1,15 +1,13 @@
-package services;
+package edu.uml.kfiore.services;
 
-import model.Quotes;
-import model.Person;
-import model.PersonTest;
-import util.DatabaseUtils;
+import edu.uml.kfiore.model.Person;
+import edu.uml.kfiore.model.PersonTest;
+import edu.uml.kfiore.model.Quotes;
+import edu.uml.kfiore.util.DatabaseUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
@@ -86,24 +84,13 @@ public class DatabasePersonServiceTest {
      */
 
     @Test
-    public void testAddOrUpdatePerson()throws PersonServiceException {
+    public void testAddPerson()throws PersonServiceException {
         Person newPerson = PersonTest.createPerson();
         personService.addOrUpdatePerson(newPerson);
         List<Person> personList = personService.getPerson();
         boolean found = false;
         for (Person person : personList) {
-            Timestamp returnedBirthDate = person.getBirthDate();
-            Calendar returnCalendar = Calendar.getInstance();
-            returnCalendar.setTimeInMillis(returnedBirthDate.getTime());
-            if (returnCalendar.get(Calendar.MONTH) == PersonTest.birthDayCalendar.get(Calendar.MONTH)
-                    &&
-                    returnCalendar.get(Calendar.YEAR) == PersonTest.birthDayCalendar.get(Calendar.YEAR)
-                    &&
-                    returnCalendar.get(Calendar.DAY_OF_MONTH) == PersonTest.birthDayCalendar.get(Calendar.DAY_OF_MONTH)
-                    &&
-                    person.getLastName().equals(PersonTest.lastName)
-                    &&
-                    person.getFirstName().equals(PersonTest.firstName)) {
+            if (person.getUserName().equals(PersonTest.userName)) {
                 found = true;
                 break;
             }
