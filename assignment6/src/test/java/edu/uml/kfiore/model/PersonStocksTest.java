@@ -1,7 +1,13 @@
 package edu.uml.kfiore.model;
 
+import edu.uml.kfiore.model.database.Person;
+import edu.uml.kfiore.model.database.PersonStocks;
+import edu.uml.kfiore.model.database.Quote;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
+import static edu.uml.kfiore.model.QuotesTest.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -17,50 +23,47 @@ public class Person_StocksTest {
      * @return a Person_Stocks object that uses Person and Quotes
      * return from their respective create method.
      */
-    public static Person_Stocks createPerson_Stocks() {
+    public static PersonStocks createPerson_Stocks() {
         Person person = PersonTest.createPerson();
-        Quotes quotes = QuotesTest.createQuotes();
-        return new Person_Stocks(person, quotes);
+        Quote quotes = createQuotes();
+        return new PersonStocks(person, quotes);
     }
 
     @Test
     public void testPerson_StocksGetterAndSetters() {
-        Quotes quotes = QuotesTest.createQuotes();
         Person person = PersonTest.createPerson();
-        Person_Stocks personStocks = new Person_Stocks();
+        PersonStocks personStocks = new PersonStocks();
         int id = 10;
         personStocks.setId(id);
         personStocks.setPerson(person);
-        personStocks.setQuotes(quotes);
         assertEquals("person matches", person, personStocks.getPerson());
-        assertEquals("quote matches", quotes, personStocks.getQuotes());
         assertEquals("id matches", id, personStocks.getId());
     }
 
     @Test
     public void testEqualsNegativeDifferentPerson() {
-        Person_Stocks personStocks = createPerson_Stocks();
+        PersonStocks personStocks = createPerson_Stocks();
         personStocks.setId(10);
-        Quotes quotes = QuotesTest.createQuotes();
+        Quote quotes = createQuotes();
         Person person = new Person();
         person.setUserName(PersonTest.userName);
-        Person_Stocks personStocks1 = new Person_Stocks(person, quotes);
+        PersonStocks personStocks1 = new PersonStocks(person, quotes);
         assertFalse("Different person", personStocks.equals(personStocks1));
     }
 
     @Test
     public void testEquals() {
-        Person_Stocks personStocks = createPerson_Stocks();
+        PersonStocks personStocks = createPerson_Stocks();
         assertTrue("Same objects are equal", personStocks.equals(createPerson_Stocks()));
     }
 
     @Test
     public void testToString() {
-        Person_Stocks personStocks = createPerson_Stocks();
+        PersonStocks personStocks = createPerson_Stocks();
         assertTrue("toString has firstName", personStocks.toString().contains(PersonTest.userName));
-        assertTrue("toString has stockSymbol", personStocks.toString().contains(QuotesTest.stockSymbol));
-        assertTrue("toString has time", personStocks.toString().contains((String.valueOf(QuotesTest.time))));
-        assertTrue("toString has price", personStocks.toString().contains(Integer.toString(QuotesTest.price)));
+        assertTrue("toString has stockSymbol", personStocks.toString().contains(stockSymbol));
+        assertTrue("toString has time", personStocks.toString().contains((String.valueOf(time))));
+        assertEquals("toString has price", true, personStocks.toString().contains(BigDecimal.valueOf(QuotesTest.price)));
     }
 
 }
